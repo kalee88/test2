@@ -14,7 +14,6 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
-# Database setup
 def get_db_connection():
     conn = sqlite3.connect('site.db')
     conn.row_factory = sqlite3.Row
@@ -25,7 +24,9 @@ def load_user(user_id):
     conn = get_db_connection()
     user = conn.execute('SELECT * FROM user WHERE id = ?', (user_id,)).fetchone()
     conn.close()
-    return User(user['id'], user['username'], user['email'], user['image_file'], user['password']) if user else None
+    if user:
+        return User(user['id'], user['username'], user['email'], user['image_file'], user['password'])
+    return None
 
 class User(UserMixin):
     def __init__(self, id, username, email, image_file, password):
