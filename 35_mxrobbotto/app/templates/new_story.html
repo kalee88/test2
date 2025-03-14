@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}New Story{% endblock %}
+{% block content %}
+    <h2>New Story</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.title.label }}<br>
+            {{ form.title(size=32) }}<br>
+            {{ form.title.errors }}
+        </div>
+        <div>
+            {{ form.content.label }}<br>
+            {{ form.content(rows=10, cols=40) }}<br>
+            {{ form.content.errors }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+{% endblock %}
