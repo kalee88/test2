@@ -150,3 +150,7 @@ def add_story(story_id):
         flash('Your contribution has been added!', 'success')
         return redirect(url_for('home'))
     return render_template('add_story.html', title='Add to Story', form=form, story=story)
+
+if __name__ == "__main__":
+    app.debug = True
+    app.run()
